@@ -1,4 +1,4 @@
-package br.albatross.test;
+package br.albatross.structures.list;
 
 public class Node<T> {
 

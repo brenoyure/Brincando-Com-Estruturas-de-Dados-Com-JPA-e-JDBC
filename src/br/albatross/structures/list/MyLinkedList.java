@@ -1,4 +1,4 @@
-package br.albatross.test;
+package br.albatross.structures.list;
 
 public class MyLinkedList<T> implements MyList<T> {
 
@@ -182,12 +182,10 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public void removeAll() {
 
-        Node<T> actual = first;
-
-        for (int i = 0; i < size; i++) {
+        for (Node<T> actual = first; actual.hasNext(); actual = actual.getNext()) {
 
             actual.setValue(null);
-            actual = actual.getNext();
+            actual.setPrev(null);
 
         }
 

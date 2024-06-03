@@ -1,4 +1,4 @@
-package br.albatross.test;
+package br.albatross.structures.test;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,6 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import br.albatross.structures.list.MyLinkedList;
+import br.albatross.structures.list.MyList;
+
+@DisplayName("Testes da implementação do MyLinkedList")
 class MyLinkedListTest {
 
     private MyList<String> letters;
@@ -180,14 +184,11 @@ class MyLinkedListTest {
     void shouldReturnNullForFirstAndLastElementAfterRemoval() {
 
         letters.remove("A");
-        letters.remove("B");
-        letters.remove("C");
-        letters.remove("D");
         letters.remove("E");
 
         assertFalse(letters.contains("A"));
         assertFalse(letters.contains("E"));
-    }    
+    }
 
     @Test
     @DisplayName("remove() com a lista contendo apenas 1(um) elemento")

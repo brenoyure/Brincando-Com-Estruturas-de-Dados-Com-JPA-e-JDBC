@@ -1,10 +1,13 @@
-package br.albatross.test;
+package br.albatross.structures;
+
+import br.albatross.structures.list.MyArrayList;
+import br.albatross.structures.list.MyList;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        MyList<Integer> myList = new MyLinkedList<>();
+        MyList<Integer> myList = new MyArrayList<>();
 
         myList.add(1);
         myList.add(2);
@@ -14,7 +17,7 @@ public class Main {
 
         System.out.println(myList);
 
-        myList.remove(1);
+        myList.remove(5);
 
         System.out.println(myList);
 
