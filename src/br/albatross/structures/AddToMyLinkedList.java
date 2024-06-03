@@ -24,8 +24,8 @@ public class AddToMyLinkedList implements Runnable {
 
         }
         
-        System.out.println("My ArrayList terminou em " + (System.currentTimeMillis() - beforeTest));
-
+        System.out.println("LinkedList terminou em " + (System.currentTimeMillis() - beforeTest));
+        
     }
 
 }
