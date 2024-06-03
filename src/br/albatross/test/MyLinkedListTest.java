@@ -145,13 +145,15 @@ class MyLinkedListTest {
     }
 
     @Test
-    @DisplayName("toString(), após o remove() deve retornar a lista faltando o primeiro elemento")
+    @DisplayName("toString(), após o remove() deve retornar a lista faltando o primeiro elemento e o size() correto")
     void shouldReturnAsStringTheCommaSeparatedValuesOfTheListWithoutTheFirstElement() {
 
+        int expectedSize = 4;
         String expectedToString = "[B, C, D, E]";
         letters.remove("A");
 
         assertEquals(expectedToString, letters.toString());
+        assertEquals(expectedSize, letters.size());
 
     }
 
@@ -167,6 +169,62 @@ class MyLinkedListTest {
 
         String expectedToString = "[]";
         assertEquals(expectedToString, letters.toString());
+
+    }
+
+    @Test
+    @DisplayName("contains() deve retornar false ao remover o primeiro e o último elemento")
+    void shouldReturnNullForFirstAndLastElementAfterRemoval() {
+
+        letters.remove("A");
+        letters.remove("B");
+        letters.remove("C");
+        letters.remove("D");
+        letters.remove("E");
+
+        assertFalse(letters.contains("A"));
+        assertFalse(letters.contains("E"));
+    }    
+
+    @Test
+    @DisplayName("remove() com a lista contendo apenas 1(um) elemento")
+    void removeMethodOnOnlyOneElementList() {
+
+        MyList<String> lettersList = new MyLinkedList<>();
+        lettersList.add("A");
+        letters.remove("A");
+
+        int expectedSize = 0;
+        String expectedToString = "[]";
+        boolean containsLetterA = false;
+        boolean isEmpty = true;
+
+        assertEquals(expectedSize, lettersList.size());
+        assertEquals(expectedToString, lettersList.toString());
+        assertFalse(containsLetterA);
+        assertTrue(isEmpty);
+
+    }
+
+    @Test
+    @DisplayName("toString() deve imprimir um [] após a remoção de todos os elementos da lista com o removeAll()")
+    void shouldReturnAnEmptyArrayAfterAllElementsHaveBeenRemovedUsingRemovaAllMethod() {
+
+        letters.removeAll();
+
+        String expectedToString = "[]";
+        assertEquals(expectedToString, letters.toString());
+
+    }
+
+    @Test
+    @DisplayName("size() deve retornar zero após a remoção dos elementos com o removeAll()")
+    void shouldReturnZeroAfterUsingRemoveAllMethod() {
+
+        int expectedSize = 0;
+
+        letters.removeAll();
+        assertEquals(expectedSize, letters.size());
 
     }
 
@@ -225,6 +283,30 @@ class MyLinkedListTest {
         letters.add("G");
         expectedSize = 6;
         assertEquals(expectedSize, letters.size());
+
+    }
+
+    @Test
+    @DisplayName("contains() deve retornar false após remoção de um valor no meio e adição de mais 2")
+    void shouldReturnFalseAfterRemoveInTheMiddleAndAddingTwoMoreValues() {
+
+        boolean contemLetraC = letters.contains("C");
+        boolean contemLetraF = letters.contains("F");
+        boolean contemLetraG = letters.contains("G");
+
+        assertTrue(contemLetraC);
+
+        letters.remove("C");
+        assertFalse(contemLetraC);
+
+        assertFalse(contemLetraF);
+        assertFalse(contemLetraG);
+
+        letters.add("F");
+        letters.add("G");
+
+        assertTrue(contemLetraF);
+        assertTrue(contemLetraG);
 
     }
 

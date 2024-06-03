@@ -16,4 +16,6 @@ public interface MyList<T> {
 
     void remove(T value);
 
+    void removeAll();
+
 }

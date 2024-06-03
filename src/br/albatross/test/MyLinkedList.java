@@ -10,16 +10,19 @@ public class MyLinkedList<T> implements MyList<T> {
     @Override
     public void add(T value) {
 
-        Node<T> newNode = new Node<>(value);
+        Node<T> newNode;
 
         if (isEmpty()) {
+            newNode = new Node<>(value);
             first = newNode;
-            last = first;
+            last = newNode;
             first.setNext(newNode);
+            last.setPrev(newNode);
+
         }
-
+        
         else {
-
+            newNode = new Node<>(last, null, value);
             last.setNext(newNode);
             last = newNode;
         }
@@ -106,17 +109,88 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    // TODO Faltando Implementar
     public void remove(T value) {
+
+        if (isEmpty()) {
+            return;
+        }
+
+        if (size == 1) {
+
+            first.setValue(null);
+            first.setNext(null);
+            last.setValue(null);
+            last.setPrev(null);
+
+            first = null;
+            last  = null;
+
+            size = size - 1;
+
+            return;
+
+        }
+
+        if (first.getValue().equals(value)) {
+
+            Node<T> secondNode = first.getNext();
+            first.setValue(null);
+            first.setNext(null);
+            first = secondNode;
+
+            size = size - 1;
+            return;            
+
+        }
+
+        if (last.getValue().equals(value)) {
+
+            Node<T> beforeLast = last.getPrev();
+            last.setValue(null);
+            last = beforeLast;
+            size = size - 1;
+
+            return;
+        }
+
+        Node<T> actual = first.getNext();
+
+        for(int i = 0; i < size - 1 ; i++) {
+
+            if (actual.getValue().equals(value)) {
+
+                actual.getPrev().setNext(actual.getNext());
+                actual.setValue(null);
+                actual.setNext(null);
+                actual = null;
+                size = size - 1;
+                return;
+
+            }
+
+            actual = actual.getNext();
+
+        }
 
     }
 
     @Override
-    public String toString() {
+    public void removeAll() {
 
-        if (isEmpty()) {
-            return "[]";
+        Node<T> actual = first;
+
+        for(int i = 0; i < size ; i++) {
+
+            actual.setValue(null);
+            actual = actual.getNext();
+
         }
+
+        size = 0;
+    }    
+
+    @Override
+    public String toString() {
 
         StringBuilder sb = new StringBuilder("[");
         Node<T> actual = first;

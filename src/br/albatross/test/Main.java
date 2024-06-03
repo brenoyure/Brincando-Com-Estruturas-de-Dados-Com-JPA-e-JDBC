@@ -17,7 +17,7 @@ public class Main {
         myList.remove(1);
 
         System.out.println(myList);
-        
+
     }
 
 }
