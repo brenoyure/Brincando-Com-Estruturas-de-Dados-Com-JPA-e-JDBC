@@ -206,16 +206,12 @@ class MyLinkedListTest {
         assertEquals(expectedSizeWithOneElement, lettersList.size());
 
         lettersList.remove("A");
+        assertTrue(lettersList.isEmpty());
         assertFalse(lettersList.contains("A"));
         assertEquals(expectedSizeWithNoElements, lettersList.size());
 
         String expectedToString = "[]";
-        boolean containsLetterA = false;
-        boolean isEmpty = true;
-
         assertEquals(expectedToString, lettersList.toString());
-        assertFalse(containsLetterA);
-        assertTrue(isEmpty);
 
     }
 

@@ -1,5 +1,7 @@
 package br.albatross.structures.list;
 
+import java.util.function.Consumer;
+
 public class MyLinkedList<T> implements MyList<T> {
 
     private Node<T> first;
@@ -210,6 +212,17 @@ public class MyLinkedList<T> implements MyList<T> {
         }
 
         return sb.append("]").toString();
+
+    }
+
+    @Override
+    public void forEach(Consumer<T> consumer) {
+
+        for (Node<T> actual = first; actual != null; actual = actual.getNext()) {
+
+            consumer.accept(actual.getValue());
+
+        }
 
     }
 

@@ -1,6 +1,4 @@
-package br.albatross.structures;
-
-import static java.lang.Thread.sleep;
+package br.albatross.structures.runnables;
 
 import br.albatross.structures.list.MyArrayList;
 import br.albatross.structures.list.MyList;
@@ -29,14 +27,13 @@ public class RemovalAllFromMyArrayList implements Runnable {
 
             }
             
-            sleep(3000);
             long beforeTest = System.currentTimeMillis();
             myList.removeAll();
             System.out.println("ArrayList terminou removeAll() em " + (System.currentTimeMillis() - beforeTest));
 
         }
 
-        catch (InterruptedException e) { throw new RuntimeException(e); }
+        catch (Exception e) { throw new RuntimeException(e); }
 
     }
 

@@ -1,4 +1,4 @@
-package br.albatross.structures;
+package br.albatross.structures.runnables;
 
 import br.albatross.structures.list.MyArrayList;
 import br.albatross.structures.list.MyList;
@@ -26,7 +26,7 @@ public class AddToMyArrayList implements Runnable {
 
         }
 
-        System.out.println("ArrayList terminou em " + (System.currentTimeMillis() - beforeTest));
+        System.out.println("ArrayList terminou de adicionar " + loopForLimit + " elementos, em " + (System.currentTimeMillis() - beforeTest));
     }
 
 }

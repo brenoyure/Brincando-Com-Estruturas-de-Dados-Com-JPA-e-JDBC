@@ -1,5 +1,7 @@
 package br.albatross.structures.list;
 
+import java.util.function.Consumer;
+
 public interface MyList<T> {
 
     void add(T value);
@@ -18,4 +20,5 @@ public interface MyList<T> {
 
     void removeAll();
 
+    void forEach(Consumer<T> consumer);
 }

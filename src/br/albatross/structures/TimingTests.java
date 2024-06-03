@@ -1,10 +1,15 @@
 package br.albatross.structures;
 
+import br.albatross.structures.runnables.AddToMyArrayList;
+import br.albatross.structures.runnables.AddToMyLinkedList;
+import br.albatross.structures.runnables.RemovalAllFromMyArrayList;
+import br.albatross.structures.runnables.RemovalAllFromMyLinkedList;
+
 public class TimingTests {
 
     public static void main(String[] args) throws Exception {
 
-        int loopForLimit = 500000;
+        int loopForLimit = 1000000;
         int arrayListInitialCapacity = loopForLimit;
 
         Runnable addToArrayList = new AddToMyArrayList(loopForLimit, arrayListInitialCapacity);

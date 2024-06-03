@@ -1,4 +1,4 @@
-package br.albatross.structures;
+package br.albatross.structures.runnables;
 
 import br.albatross.structures.list.MyLinkedList;
 import br.albatross.structures.list.MyList;
@@ -24,7 +24,7 @@ public class AddToMyLinkedList implements Runnable {
 
         }
         
-        System.out.println("LinkedList terminou em " + (System.currentTimeMillis() - beforeTest));
+        System.out.println("LinkedList terminou de adicionar " + loopForLimit + " elementos, em " + (System.currentTimeMillis() - beforeTest));
         
     }
 

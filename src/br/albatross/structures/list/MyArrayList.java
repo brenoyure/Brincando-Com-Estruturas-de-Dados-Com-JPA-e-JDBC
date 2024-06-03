@@ -1,5 +1,7 @@
 package br.albatross.structures.list;
 
+import java.util.function.Consumer;
+
 @SuppressWarnings("unchecked")
 public class MyArrayList<T> implements MyList<T> {
 
@@ -144,6 +146,17 @@ public class MyArrayList<T> implements MyList<T> {
         }
 
         return sb.append("]").toString();
+
+    }
+
+    @Override
+    public void forEach(Consumer<T> consumer) {
+
+        for (int i = 0; i < size; i++) {
+
+            consumer.accept(array[i]);
+
+        }
 
     }
 

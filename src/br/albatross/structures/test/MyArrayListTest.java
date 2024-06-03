@@ -172,7 +172,7 @@ class MyArrayListTest {
 
         assertFalse(letters.contains("A"));
         assertFalse(letters.contains("E"));
-    }    
+    }
 
     @Test
     @DisplayName("contains() retorna true se determinado valor estiver contido na Lista")
@@ -190,7 +190,7 @@ class MyArrayListTest {
         assertTrue(contemLetraD);
         assertTrue(contemLetraE);
 
-    }    
+    }
 
     @Test
     @DisplayName("contains() retorna true se os novos valores adicionados com o addAll() estiverem contido na Lista")
@@ -220,12 +220,68 @@ class MyArrayListTest {
 
     }
 
+    @Test
+    @DisplayName("remove() com a lista contendo apenas 1(um) elemento")
+    void removeMethodOnOnlyOneElementList() {
+
+        int expectedSizeWithNoElements = 0;
+        int expectedSizeWithOneElement = 1;
+
+        MyList<String> lettersList = new MyArrayList<>();
+        assertEquals(expectedSizeWithNoElements, lettersList.size());
+
+        lettersList.add("A");
+
+        assertTrue(lettersList.contains("A"));
+        assertEquals(expectedSizeWithOneElement, lettersList.size());
+
+        lettersList.remove("A");
+        assertTrue(lettersList.isEmpty());
+        assertFalse(lettersList.contains("A"));
+        assertEquals(expectedSizeWithNoElements, lettersList.size());
+
+        String expectedToString = "[]";
+        assertEquals(expectedToString, lettersList.toString());
+
+    }
+
+    @Test
+    @DisplayName("contains() deve retornar false após remoção de um valor no meio e adição de mais 2")
+    void shouldReturnFalseAfterRemoveInTheMiddleAndAddingTwoMoreValues() {
+
+        assertTrue(letters.contains("C"));
+
+        letters.remove("C");
+
+        assertFalse(letters.contains("C"));
+
+        assertFalse(letters.contains("F"));
+        assertFalse(letters.contains("G"));
+
+        letters.add("F");
+        letters.add("G");
+
+        assertTrue(letters.contains("F"));
+        assertTrue(letters.contains("G"));
+
+    }
+
+    @Test
+    @DisplayName("toString() deve imprimir [A, B, D, E, F, G] após remoção de um valor no meio e adição de mais 2")
+    void shouldReturnAsStringTheCommaSeparatedValuesOfTheListAfterRemoveInTheMiddleAndAddingTwoMoreValues() {
+
+        String expectedStringAfterLetterCRemoval = "[A, B, D, E]";
+        String expectedStringAfterLettersFAndGHasBeenAdded = "[A, B, D, E, F, G]";
+
+        letters.remove("C");
+
+        assertEquals(expectedStringAfterLetterCRemoval, letters.toString());
+
+        letters.add("F");
+        letters.add("G");
+
+        assertEquals(expectedStringAfterLettersFAndGHasBeenAdded, letters.toString());
+
+    }
+
 }
-
-
-
-
-
-
-
-
