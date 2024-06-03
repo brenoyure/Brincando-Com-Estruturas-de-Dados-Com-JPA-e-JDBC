@@ -31,10 +31,13 @@ class MyLinkedListTest {
     @DisplayName("size() deve retornar o tamanho correto da lista após adição apenas 1(um) valor")
     void shouldReturnTheCorrectSizeAfterAddingOnlyOneValue() {
 
-        int expectedSize = 1;
+        int expectedSize = 0;
 
         MyList<String> letters = new MyLinkedList<>();
+        assertEquals(expectedSize, letters.size());
+
         letters.add("A");
+        expectedSize = 1;
 
         assertEquals(expectedSize, letters.size());
 
@@ -190,16 +193,25 @@ class MyLinkedListTest {
     @DisplayName("remove() com a lista contendo apenas 1(um) elemento")
     void removeMethodOnOnlyOneElementList() {
 
-        MyList<String> lettersList = new MyLinkedList<>();
-        lettersList.add("A");
-        letters.remove("A");
+        int expectedSizeWithNoElements = 0;
+        int expectedSizeWithOneElement = 1;
 
-        int expectedSize = 0;
+        MyList<String> lettersList = new MyLinkedList<>();
+        assertEquals(expectedSizeWithNoElements, lettersList.size());
+
+        lettersList.add("A");
+
+        assertTrue(lettersList.contains("A"));
+        assertEquals(expectedSizeWithOneElement, lettersList.size());
+
+        lettersList.remove("A");
+        assertFalse(lettersList.contains("A"));
+        assertEquals(expectedSizeWithNoElements, lettersList.size());
+
         String expectedToString = "[]";
         boolean containsLetterA = false;
         boolean isEmpty = true;
 
-        assertEquals(expectedSize, lettersList.size());
         assertEquals(expectedToString, lettersList.toString());
         assertFalse(containsLetterA);
         assertTrue(isEmpty);
@@ -225,6 +237,26 @@ class MyLinkedListTest {
 
         letters.removeAll();
         assertEquals(expectedSize, letters.size());
+
+    }
+
+    @Test
+    @DisplayName("contains() retorna false para cada valor da lista após o removeAll()")
+    void shouldReturnFalseIfSpecifiedValuesAreNotPresentInsideTheListAfterRemoveAllMethod() {
+
+        assertTrue(letters.contains("A"));
+        assertTrue(letters.contains("B"));
+        assertTrue(letters.contains("C"));
+        assertTrue(letters.contains("D"));
+        assertTrue(letters.contains("E"));
+
+        letters.removeAll();
+
+        assertFalse(letters.contains("A"));
+        assertFalse(letters.contains("B"));
+        assertFalse(letters.contains("C"));
+        assertFalse(letters.contains("D"));
+        assertFalse(letters.contains("E"));
 
     }
 
@@ -290,23 +322,38 @@ class MyLinkedListTest {
     @DisplayName("contains() deve retornar false após remoção de um valor no meio e adição de mais 2")
     void shouldReturnFalseAfterRemoveInTheMiddleAndAddingTwoMoreValues() {
 
-        boolean contemLetraC = letters.contains("C");
-        boolean contemLetraF = letters.contains("F");
-        boolean contemLetraG = letters.contains("G");
-
-        assertTrue(contemLetraC);
+        assertTrue(letters.contains("C"));
 
         letters.remove("C");
-        assertFalse(contemLetraC);
 
-        assertFalse(contemLetraF);
-        assertFalse(contemLetraG);
+        assertFalse(letters.contains("C"));
+
+        assertFalse(letters.contains("F"));
+        assertFalse(letters.contains("G"));
 
         letters.add("F");
         letters.add("G");
 
-        assertTrue(contemLetraF);
-        assertTrue(contemLetraG);
+        assertTrue(letters.contains("F"));
+        assertTrue(letters.contains("G"));
+
+    }
+
+    @Test
+    @DisplayName("toString() deve imprimir [A, B, D, E, F, G] após remoção de um valor no meio e adição de mais 2")
+    void shouldReturnAsStringTheCommaSeparatedValuesOfTheListAfterRemoveInTheMiddleAndAddingTwoMoreValues() {
+
+        String expectedStringAfterLetterCRemoval = "[A, B, D, E]";
+        String expectedStringAfterLettersFAndGHasBeenAdded = "[A, B, D, E, F, G]";
+
+        letters.remove("C");
+
+        assertEquals(expectedStringAfterLetterCRemoval, letters.toString());
+
+        letters.add("F");
+        letters.add("G");
+
+        assertEquals(expectedStringAfterLettersFAndGHasBeenAdded, letters.toString());
 
     }
 

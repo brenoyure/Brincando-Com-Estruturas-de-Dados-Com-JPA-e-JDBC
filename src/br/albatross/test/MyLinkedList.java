@@ -13,6 +13,7 @@ public class MyLinkedList<T> implements MyList<T> {
         Node<T> newNode;
 
         if (isEmpty()) {
+
             newNode = new Node<>(value);
             first = newNode;
             last = newNode;
@@ -20,11 +21,13 @@ public class MyLinkedList<T> implements MyList<T> {
             last.setPrev(newNode);
 
         }
-        
+
         else {
+
             newNode = new Node<>(last, null, value);
             last.setNext(newNode);
             last = newNode;
+
         }
 
         size++;
@@ -125,7 +128,7 @@ public class MyLinkedList<T> implements MyList<T> {
             first = null;
             last  = null;
 
-            size = size - 1;
+            --size;
 
             return;
 
@@ -138,8 +141,8 @@ public class MyLinkedList<T> implements MyList<T> {
             first.setNext(null);
             first = secondNode;
 
-            size = size - 1;
-            return;            
+            --size;
+            return;
 
         }
 
@@ -148,27 +151,29 @@ public class MyLinkedList<T> implements MyList<T> {
             Node<T> beforeLast = last.getPrev();
             last.setValue(null);
             last = beforeLast;
-            size = size - 1;
+            --size;
 
             return;
         }
 
-        Node<T> actual = first.getNext();
+        for (Node<T> actualNode = first.getNext(); actualNode.hasNext(); actualNode = actualNode.getNext()) {
 
-        for(int i = 0; i < size - 1 ; i++) {
+            if (actualNode.getValue().equals(value)) {
 
-            if (actual.getValue().equals(value)) {
+                Node<T> prevNode = actualNode.getPrev();
+                Node<T> nextNode = actualNode.getNext();
 
-                actual.getPrev().setNext(actual.getNext());
-                actual.setValue(null);
-                actual.setNext(null);
-                actual = null;
-                size = size - 1;
+                actualNode.setValue(null);
+                actualNode.setPrev(null);
+                actualNode.setNext(null);
+
+                prevNode.setNext(nextNode);
+                nextNode.setPrev(prevNode);
+
+                size--;
                 return;
 
             }
-
-            actual = actual.getNext();
 
         }
 
@@ -179,7 +184,7 @@ public class MyLinkedList<T> implements MyList<T> {
 
         Node<T> actual = first;
 
-        for(int i = 0; i < size ; i++) {
+        for (int i = 0; i < size; i++) {
 
             actual.setValue(null);
             actual = actual.getNext();
@@ -187,7 +192,7 @@ public class MyLinkedList<T> implements MyList<T> {
         }
 
         size = 0;
-    }    
+    }
 
     @Override
     public String toString() {
