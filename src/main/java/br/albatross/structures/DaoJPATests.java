@@ -21,7 +21,7 @@ public class DaoJPATests {
 
 
         repository
-            .findByBairroAndCidadeAndEstado("Grande Messejana", null, "Ceará")
+            .findAll()
             .forEach(System.out::println);
             
 
