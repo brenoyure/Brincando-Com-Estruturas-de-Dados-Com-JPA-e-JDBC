@@ -1,6 +1,6 @@
 package br.albatross.structures;
 
-import br.albatross.structures.list.MyLinkedList;
+import br.albatross.structures.list.MyArrayList;
 import br.albatross.structures.list.MyList;
 import br.albatross.structures.model.Contato;
 
@@ -8,7 +8,7 @@ public class ContatoForEachTests {
 
     public static void main(String[] args) {
 
-        MyList<Contato> myList = new MyLinkedList<>();
+        MyList<Contato> myList = new MyArrayList<>();
 
         Contato c1 = new Contato(1, "Breno Yuri", "85993321234", "Rua XPTO 365");
         Contato c2 = new Contato(2, "Amanda Blacer", "73211124321", "Rua Messejana City");
